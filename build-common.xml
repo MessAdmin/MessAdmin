@@ -1,0 +1,160 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="./ant2html.xsl"?>
+<project name="MessAdmin-common-build" default="jar">
+	<description>
+		common targets for the MessAdmin project
+	</description>
+
+	<property file="build-common.properties"/>
+
+	<!-- ================================= 
+		 paths
+		 ================================= -->
+	<path id="compile.classpath">
+		<fileset dir="${lib.dir}" includes="**/*.jar"/>
+	</path>
+	<path id="test.classpath">
+		<path refid="compile.classpath"/>
+		<pathelement location="${junit.jar}"/>
+		<pathelement location="${build.classes.dir}"/>
+		<pathelement location="${test.classes.dir}"/>
+	</path>
+
+	<target name="debug">
+		<echoproperties format="text"/>
+	</target>
+
+	<!-- ================================= 
+		 target: jar
+		 ================================= -->
+	<target name="jar" depends="init,compile" description="--> builds jar file">
+		<jar destfile="${jar.file}" basedir="${build.classes.dir}"
+				manifest="${metainf.dir}/MANIFEST.MF" filesetmanifest="merge" manifestencoding="UTF-8"
+				compress="true" index="true">
+			<metainf dir="${metainf.dir}"/>
+			<manifest>
+				<attribute name="Specification-Title"	value="${manifest.Specification-Title}"/>
+				<attribute name="Specification-Version"	value="${manifest.Specification-Version}"/>
+				<attribute name="Specification-Vendor"	value="${manifest.Specification-Vendor}"/>
+				<attribute name="Implementation-Title"	value="${manifest.Implementation-Title}"/>
+				<attribute name="Implementation-Version" value="${manifest.Implementation-Version}"/>
+				<attribute name="Implementation-Vendor"	value="${manifest.Implementation-Vendor}"/>
+				<attribute name="Implementation-URL"	value="${manifest.Implementation-URL}"/>
+				<attribute name="Sealed"				value="${manifest.Sealed}"/>
+			</manifest>
+		</jar>
+	</target>
+
+	<!-- ================================= 
+		 target: test
+		 To run a single test: ant -Dtestcase=org.example.antbook.TroublesomeTest
+		 Note that by default, the <junit> task does not halt a build when failures occur.
+		 ================================= -->
+	<target name="test" depends="init,compile-test">
+		<junit printsummary="no"
+			errorProperty="test.failed"
+			failureProperty="test.failed">
+
+			<classpath refid="test.classpath"/>
+
+			<test name="${testcase}" if="testcase"/>
+			<batchtest todir="${test.data.dir}" unless="testcase">
+				<fileset dir="${test.classes.dir}" includes="**/*Test.class"/>
+			</batchtest>
+		</junit>
+		<fail if="test.failed">
+			Unit tests failed. Check log or reports for details.
+		</fail>
+	</target>
+
+	<!-- ================================= 
+		 target: compile
+		 ================================= -->
+	<target name="build" depends="compile" description="--> compiles source files"/>
+	<target name="compile" depends="init" description="--> compiles source files">
+		<javac srcdir="${src.dir}"
+			destdir="${build.classes.dir}"
+			debug="on"
+			optimize="off"
+			encoding="${src.encoding}"
+			source="${compiler.source}"
+			target="${compiler.target}"
+			bootclasspath="${lib.common.dir}/rt-${compiler.target}.jar"
+			failonerror="true"
+			includeantruntime="false"
+		>
+			<classpath>
+				<path refid="compile.classpath"/>
+				<pathelement location="../MessAdmin-Core/lib/servlet23-tomcat41.jar"/>
+				<pathelement location="../MessAdmin-Core/${dist.dir}/MessAdmin-Core-${version}.jar"/>
+			</classpath>
+		</javac>
+		<copy todir="${build.classes.dir}" preservelastmodified="true">
+			<fileset dir="${src.dir}" includes="**/*.properties"/>
+		</copy>
+	</target>
+
+	<target name="build-test" depends="compile-test" description="--> compiles test source files"/>
+	<target name="compile-test" depends="init, compile" description="--> compiles test source files">
+		<javac srcdir="${test.src.dir}"
+			destdir="${test.classes.dir}"
+			debug="on"
+			optimize="off"
+			encoding="${src.encoding}"
+			source="${compiler.source}"
+			target="${compiler.target}"
+			failonerror="true"
+			includeantruntime="false"
+		>
+			<classpath>
+				<path refid="test.classpath"/>
+				<pathelement location="../MessAdmin-Core/lib/servlet23-tomcat41.jar"/>
+				<pathelement location="../MessAdmin-Core/${dist.dir}/MessAdmin-Core-${version}.jar"/>
+			</classpath>
+		</javac>
+		<copy todir="${test.classes.dir}" preservelastmodified="true">
+			<fileset dir="${test.src.dir}" includes="**/*.properties"/>
+		</copy>
+	</target>
+
+	<!-- ================================= 
+		 target: clean
+		 ================================= -->
+	<target name="clean" depends="init" description="--> cleans up build files only (keeping dist files)">
+		<delete includeemptydirs="true">
+			<fileset dir="${build.dir}">
+				<include name="**/*"/>
+			</fileset>
+		</delete>
+		<delete dir="${build.dir}" includeemptydirs="true" />
+	</target>
+
+	<!-- ================================= 
+		 target: distclean
+		 ================================= -->
+	<target name="distclean" depends="clean" description="--> cleans up everything">
+		<delete file="${jar.file}"/>
+		<delete includeemptydirs="true">
+			<fileset dir="${dist.dir}">
+				<include name="**/*"/>
+			</fileset>
+		</delete>
+		<delete dir="${dist.dir}" includeemptydirs="true" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+		 target: init
+		 - - - - - - - - - - - - - - - - - -->
+	<target name="init">
+		<tstamp>
+			<format property="DSTAMP" pattern="yyyyMMdd"/>
+			<format property="TSTAMP" pattern="HHmm"/>
+			<format property="TODAY" pattern="yyyy-MM-dd'T'HH:mm:ss"/>
+		</tstamp>
+		<mkdir dir="${build.dir}"/>
+		<mkdir dir="${build.classes.dir}"/>
+		<mkdir dir="${test.classes.dir}"/>
+		<mkdir dir="${dist.dir}"/>
+	</target>
+
+</project>

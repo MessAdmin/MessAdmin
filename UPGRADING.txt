@@ -1,0 +1,4 @@
+To upgrade, replace all MessAdmin jar files (core and plugins) with their newer versions, along with the administration webapp JSPs.
+
+
+If upgrading from version 1.x, 2.x, 3.x or 4.x, you should not install the AutoProbe plugin since you already have all the required configuration in your web.xml

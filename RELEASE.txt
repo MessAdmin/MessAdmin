@@ -1,0 +1,33 @@
+Check copyright dates are current: source, documentation (search for previous year)
+
+
+Copy rt-*.jar in lib/
+
+set JAVA_HOME=C:\Apps\jdk6
+set ANT_HOME=C:\Apps\ant17
+set MVN2_HOME=C:\Apps\maven2
+ant dist
+mvn -Dmaven.test.skip=true -Duser.name=Cedrik source:jar
+
+delete WARNING.txt from binary distribution (if release version)
+
+
+index.html: uncomment tiddlers MarkupPostBody (Google Analytics) & AdSense
+
+Upload dist/MessAdmin-*.zip to SourceForge
+Upload modified index.html to SourceForge
+
+Build Maven 2 repo with */target/MessAdmin-*-sources.jar and upload to SourceForge
+("temporary", while I make mvn package & repository:bundle-create work...)
+
+Update MessAdmin-UpdateServer with previous release #
+
+
+
+SF hints:
+
+sftp cedrik_lime,messadmin@frs.sourceforge.net:/home/pfs/project/m/me/messadmin/
+
+ssh -t cedrik_lime,messadmin@shell.sourceforge.net create
+
+sftp cedrik_lime,messadmin@web.sourceforge.net:/home/groups/m/me/messadmin/htdocs/

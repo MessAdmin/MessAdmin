@@ -1,0 +1,11 @@
+WARNING: this is pre-released software.
+
+While every reasonable steps have been taken to ensure error-free operations, no warranty is given as to the suitability of this version for production use.
+
+See the release notes for changes.
+
+Special notes for this release:
+
+* Everything should work as expected. This is between beta and rc.
+
+Please test and report any bug!
