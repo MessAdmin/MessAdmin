@@ -85,7 +85,6 @@
 		<module>MessAdmin-DiskBrowser</module>
 		<module>MessAdmin-Ehcache</module>
 		<module>MessAdmin-Hibernate</module>
-		<module>MessAdmin-JMX</module>
 		<module>MessAdmin-Log4J</module>
 		<module>MessAdmin-Quartz1</module>
 		<module>MessAdmin-ScriptExecutor</module>
@@ -166,7 +165,8 @@
 					<source>${maven.compiler.source}</source>
 					<target>${maven.compiler.target}</target>
 					<compilerArguments>
-						<bootclasspath>../lib/rt-${maven.compiler.target}.jar</bootclasspath>
+						<!--bootclasspath>lib/rt-${maven.compiler.target}.jar</bootclasspath-->
+						<bootclasspath>${project.build.directory}/../../lib/rt-${maven.compiler.target}.jar</bootclasspath>
 					</compilerArguments>
 					<!--fork>true</fork>
 					<executable>/usr/java/${maven.compiler.source}/bin/javac</executable>
