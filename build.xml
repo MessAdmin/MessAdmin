@@ -74,8 +74,6 @@
 			<zipfileset file="MessAdmin-ClickStream/*.txt" prefix="MessAdmin-${version}/plugins/ClickStream/"/>
 			<zipfileset file="MessAdmin-DiskBrowser/${dist.dir}/*.jar" prefix="MessAdmin-${version}/plugins/DiskBrowser/"/>
 			<zipfileset file="MessAdmin-DiskBrowser/*.txt" prefix="MessAdmin-${version}/plugins/DiskBrowser/"/>
-			<zipfileset file="MessAdmin-JMX/${dist.dir}/*.jar" prefix="MessAdmin-${version}/plugins/JMX/"/>
-			<zipfileset file="MessAdmin-JMX/*.txt" prefix="MessAdmin-${version}/plugins/JMX/"/>
 			<zipfileset file="MessAdmin-ScriptExecutor/${dist.dir}/*.jar" prefix="MessAdmin-${version}/plugins/ScriptExecutor/"/>
 			<zipfileset file="MessAdmin-ScriptExecutor/*.txt" prefix="MessAdmin-${version}/plugins/ScriptExecutor/"/>
 			<zipfileset file="MessAdmin-Log4J/${dist.dir}/*.jar" prefix="MessAdmin-${version}/plugins/Log4J/"/>
@@ -84,8 +82,10 @@
 			<zipfileset file="MessAdmin-Hibernate/*.txt" prefix="MessAdmin-${version}/plugins/Hibernate/"/>
 			<zipfileset file="MessAdmin-Ehcache/${dist.dir}/*.jar" prefix="MessAdmin-${version}/plugins/Ehcache/"/>
 			<zipfileset file="MessAdmin-Ehcache/*.txt" prefix="MessAdmin-${version}/plugins/Ehcache/"/>
-			<zipfileset file="MessAdmin-Quartz1/${dist.dir}/*.jar" prefix="MessAdmin-${version}/plugins/Quartz/"/>
-			<zipfileset file="MessAdmin-Quartz1/*.txt" prefix="MessAdmin-${version}/plugins/Quartz/"/>
+			<zipfileset file="MessAdmin-Quartz1/${dist.dir}/*.jar" prefix="MessAdmin-${version}/plugins/Quartz1/"/>
+			<zipfileset file="MessAdmin-Quartz1/*.txt" prefix="MessAdmin-${version}/plugins/Quartz1/"/>
+			<zipfileset file="MessAdmin-Quartz2/${dist.dir}/*.jar" prefix="MessAdmin-${version}/plugins/Quartz2/"/>
+			<zipfileset file="MessAdmin-Quartz2/*.txt" prefix="MessAdmin-${version}/plugins/Quartz2/"/>
 			<zipfileset file="MessAdmin-AutoProbe/${dist.dir}/*.jar" prefix="MessAdmin-${version}/plugins/AutoProbe/"/>
 			<zipfileset file="MessAdmin-AutoProbe/README.txt" prefix="MessAdmin-${version}/plugins/AutoProbe/"/>
 			<zipfileset file="MessAdmin-SizeOf/${dist.dir}/*.jar" prefix="MessAdmin-${version}/plugins/SizeOf/"/>

@@ -87,6 +87,7 @@
 		<module>MessAdmin-Hibernate</module>
 		<module>MessAdmin-Log4J</module>
 		<module>MessAdmin-Quartz1</module>
+		<module>MessAdmin-Quartz2</module>
 		<module>MessAdmin-ScriptExecutor</module>
 		<module>MessAdmin-Serializable</module>
 		<module>MessAdmin-ServletStats</module>
