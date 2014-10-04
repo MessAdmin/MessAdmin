@@ -844,14 +844,14 @@ Sure! It lives in the {{{clime.messadmin.utils.compress}}} package. See the clas
 *{{{clime.messadmin.utils}}}
 **	Some reusable utility classes (who hasn't?)</pre>
 </div>
-<div title="Disclaimer" modifier="Cédrik" created="200603052106" modified="201108061951">
+<div title="Disclaimer" modifier="Cédrik" created="200603052106" modified="201108061951" changecount="1">
 <pre>AKA the legal jumbo mumbo...
 
 This product includes software developed by the [[Apache Software Foundation|http://www.apache.org/]].
 Object sizing based on software developed by [[Vlad Roubtsov|http://www.javaworld.com/columns/jw-qna-index.shtml]].
 Base64 based on software developed by [[Mikael Grev|http://migbase64.sourceforge.net/]].
 This product includes parts of [[backport-util-concurrent|http://backport-jsr166.sourceforge.net/]].
-Multi-threaded compression based on a patched version of [[JZlib|http://www.jcraft.com/jzlib/]].
+Multi-threaded compression uses on a patched version of [[JZlib|http://www.jcraft.com/jzlib/]] (Java &lt;= 6).
 [[getElementsBySelector.js|http://simon.incutio.com/js/getElementsBySelector.js]] copyright &amp;copy; 2003 Simon Willison.
 [[behavior.js|http://www.ccs.neu.edu/home/dherman/javascript/behavior/]] copyright &amp;copy; 2005 Dave Herman.
 {{{RAM.js}}} based on [[RAM.js|http://webreflection.blogspot.com/2007/10/cow-web-ram-javascript-function-to.html]] copyright &amp;copy; 2007 Andrea Giammarchi.
@@ -869,7 +869,7 @@ Directories are [[ZIP|http://www.pkware.com/support/zip-app-note/]] compressed. 
 <pre>This MessAdmin plugin displays [[Ehcache|http://www.ehcache.org]] statistics, and also enables you to clear your caches.
 Requires Ehcache &gt;= 1.4.1.</pre>
 </div>
-<div title="FAQ" modifier="Cédrik" created="200603052107" modified="201109082030">
+<div title="FAQ" modifier="Cédrik" created="200603052107" modified="201410041831" changecount="10">
 <pre>[[Disclaimer]]/%
 %/
 * How stable is this product? How much memory/CPU does it use?
@@ -895,7 +895,6 @@ Computing the size of a Java Object is a very tricky business. See [[HttpSession
 &lt;&lt;&lt;
 * JMX does not work!
 &lt;&lt;&lt;
-Are you using Java 5?
 Did you enable management for your application server?
 See [[Install-JMX]] for instructions.
 &lt;&lt;&lt;
@@ -927,14 +926,16 @@ Other projects can monitor your web applications, even if more intrusive or less
 * [[JAMon|http://jamonapi.sourceforge.net/]]
 * [[JManage|http://www.jmanage.org/]]
 * [[ClickStream|http://www.opensymphony.com/clickstream/]]
-* [[Glassbox Inspector|http://www.glassbox.com/]]
 * [[InfraRED|http://infrared.sourceforge.net/]]
+* [[Metrics|https://github.com/dropwizard/metrics]]
+* [[jvmtop|https://code.google.com/p/jvmtop/]]
+* [[XRebel|http://zeroturnaround.com/software/xrebel/]]
 &lt;&lt;&lt;
 * Any developer FAQ?
 &lt;&lt;&lt;
 Sure! See the [[Developer FAQ|DeveloperFAQ]]
 &lt;&lt;&lt;
-* Q: How do I recognize a Servlet 2.3 {{{web.xml}}} from a Servlet 2.4 / 2.5 /3.0 one?
+* Q: How do I recognize a Servlet 2.3 {{{web.xml}}} from a Servlet 2.4 / 2.5 / 3.0 / 3.1 one?
 A: a Servlet 2.3 {{{web.xml}}} start like this:
 {{{
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
@@ -951,7 +952,7 @@ while a Servlet 2.4 {{{web.xml}}} start like this:
 	xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
 	xsi:schemaLocation=&quot;http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd&quot;&gt;
 }}}
-and a Servlet 2.5 {{{web.xml}}} like this:
+a Servlet 2.5 {{{web.xml}}} like this:
 {{{
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;web-app xmlns=&quot;http://java.sun.com/xml/ns/javaee&quot;
@@ -959,13 +960,21 @@ and a Servlet 2.5 {{{web.xml}}} like this:
 	xsi:schemaLocation=&quot;http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd&quot;
 	version=&quot;2.5&quot; [metadata-complete=&quot;true&quot;]&gt;
 }}}
-and finally a Servlet 3.0 {{{web.xml}}} like this:
+a Servlet 3.0 {{{web.xml}}} like this:
 {{{
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;web-app xmlns=&quot;http://java.sun.com/xml/ns/javaee&quot;
 	xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
 	xsi:schemaLocation=&quot;http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd&quot;
 	version=&quot;3.0&quot; [metadata-complete=&quot;true&quot;]&gt;
+}}}
+and finally a Servlet 3.1 {{{web.xml}}} like this:
+{{{
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;web-app xmlns=&quot;http://xmlns.jcp.org/xml/ns/javaee&quot;
+	xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+	xsi:schemaLocation=&quot;http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd&quot;
+	version=&quot;3.1&quot; [metadata-complete=&quot;true&quot;]&gt;
 }}}</pre>
 </div>
 <div title="Features" modifier="YourName" created="200603052102" modified="201102041136">
@@ -1071,8 +1080,11 @@ I will update the documentation with your name. Please refrain from changing the
 
 Should you have any question and/or suggestion, please contact me and I'll do my best to give you an answer!</pre>
 </div>
-<div title="HttpReadOnly" modifier="Cédrik" created="200603052022" modified="200603052127" tags="systemConfig excludeLists excludeSearch">
-<pre>config.options.chkHttpReadOnly = true;</pre>
+<div title="HttpReadOnly" modifier="Cédrik" created="200603052022" modified="200603052127" tags="systemConfig excludeLists excludeSearch" changecount="1">
+<pre>config.options.chkHttpReadOnly = true;
+config.options.chkAnimate = true;
+config.options.txtUserName = &quot;Cédrik&quot;;
+config.options.chkSaveBackups = false;</pre>
 </div>
 <div title="HttpSession size" modifier="Cédrik" created="200706271800" modified="200710071704">
 <pre>Computing a {{{HttpSession}}} memory size is a challenging task at best.
@@ -1253,8 +1265,8 @@ See [[here|Maven]].</pre>
 <pre>This MessAdmin plugin exposes MessAdmin data via JMX.
 Please see the [[installation instructions|Install-JMX]].</pre>
 </div>
-<div title="License / Contact" modifier="Cédrik" created="200603052104" modified="201301131939">
-<pre>MessAdmin is Copyright &amp;copy; 2005&amp;ndash;2013, [[Cédrik LIME|mailto:cedrik_lime@users.sourceforge.net?subject=[MessAdmin]%20&lt;your email subject here&gt;]].
+<div title="License / Contact" modifier="Cédrik" created="200603052104" modified="201301131939" changecount="2">
+<pre>MessAdmin is Copyright &amp;copy; 2005&amp;ndash;2015, [[Cédrik LIME|mailto:cedrik_lime@users.sourceforge.net?subject=[MessAdmin]%20&lt;your email subject here&gt;]].
 
 MessAdmin is licensed under the [[Simplified BSD license|http://www.opensource.org/licenses/bsd-license.php]], that gives you the freedom to use it pretty much however you want, including for commercial purposes, as long as you keep my copyright notice.
 I would of course appreciate a short email should you re-use my code!
@@ -1451,8 +1463,8 @@ In addition to plugins in {{{MessAdmin-Core.jar}}}, the following external plugi
 To install a plugin, simply copy the plugin jar in your {{{WEB-INF/lib/}}} directory, or next to {{{MessAdmin-Core.jar}}}.
 </pre>
 </div>
-<div title="Quartz" modifier="Cédrik" created="201009111156" modified="201306021910">
-<pre>This MessAdmin plugin enables you to interact with [[Quartz|http://www.quartz-scheduler.org/]] 1. and 2.x:
+<div title="Quartz" modifier="Cédrik" created="201009111156" modified="201306021910" changecount="1">
+<pre>This MessAdmin plugin enables you to interact with [[Quartz|http://www.quartz-scheduler.org/]] 1.x and 2.x:
 * list, pause &amp;amp; resume {{{Scheduler}}}s
 * list, pause, resume &amp;amp; delete {{{Trigger}}}s
 * list, run, interrupt &amp;amp; delete {{{Job}}}s
@@ -1499,12 +1511,14 @@ Note: the invocation order of Providers is reversed in case of request destructi
 * {{{MessAdmin-ClickStream.jar}}} ({{{clime.messadmin.providers.lifecycle.ClickStreamGatherer}}})
 **	See ClickStream</pre>
 </div>
-<div title="Requirements" modifier="Cédrik" created="200603052038" modified="201306022013">
+<div title="Requirements" modifier="Cédrik" created="200603052038" modified="201410012103" changecount="1">
 <pre>MessAdmin needs at least [[Java 5|http://java.sun.com/j2se/1.5.0/]], and a Java Servlet container (Servlet 2.4/~J2EE 1.4; e.g. [[Tomcat 5|http://tomcat.apache.org]], ~WebLogic 9 or ~WebSphere 6).
 Some [[plugins|Plugins]] may have different requirements.
 
 While you can continue running ~MessAdmin-Core on a Servlet 2.3 container, this is not a supported configuration (see the [[advanced installation instructions|Advanced installation]] for details)./%
-Should you need a version of MessAdmin compatible with a Servlet 2.3 container, please use version [[4.3|Version 4.3 (2010-04)]] or [[get in touch with us|License / Contact]].%/</pre>
+Should you need a version of MessAdmin compatible with a Servlet 2.3 container, please use version [[4.3|Version 4.3 (2010-04)]] or [[get in touch with us|License / Contact]].%/
+
+This is also the last version to support Java 1.5. Next version will require Java 6.</pre>
 </div>
 <div title="ScreenShots" modifier="Cédrik" created="200603052116" modified="200604092019">
 <pre>Note: this section is rather outdated. We are working on taking new screenshots to expose new features. In the meantime, feel free to explore our LiveDemo!
@@ -1632,6 +1646,11 @@ Place your custom CSS here
 <div title="SystemAdministrator" modifier="Cédrik" created="200604091922" modified="200607161550" tags="benefits">
 <pre>Being very light weigh, MessAdmin can be integrated in all your running Java EE applications. From there, it will be very easy to answer questions like &quot;how many users are on the system right now?&quot;, &quot;which country do they come from?&quot;, &quot;what was the maximum load we had for this application and when?&quot;, or &quot;how much data is going tough our lines?&quot;, as well as &quot;who's logged in and what are they doing?&quot;.
 And should you need to perform an emergency shutdown (or any other unexpected system maintenance), at least now you can warn your users beforehand by sending them messages!</pre>
+</div>
+<div title="SystemSettings" modifier="Cédrik" created="201410042015" tags="excludeLists excludeSearch" changecount="14">
+<pre>chkAnimate: true
+txtUserName: Cédrik
+chkSaveBackups: false</pre>
 </div>
 <div title="TiddlyWiki" modifier="Cédrik" created="200604091903" modified="200604131936">
 <pre>TiddlyWiki defines itself as &quot;a reusable non-linear personal web notebook&quot;. It can be considered as a standalone wiki application. More information is available at the [[TiddlyWiki web site|http://www.tiddlywiki.com]]. Thank you, Jeremy Ruston, for writing this fine piece of software!</pre>
@@ -2055,8 +2074,10 @@ MessAdmin 5.3 will be the last version to support Java 1.4. Next version will re
 * [[DiskBrowser plugin|DiskBrowser]]: fixed a cosmetic issue where downloading a file containing a space would result in the saved file name being truncated
 * [[DiskBrowser plugin|DiskBrowser]]: fixed an issue where it would display only one of several files with the same name but with differing case (e.g. {{{test}}} and {{{Test}}})</pre>
 </div>
-<div title="Version 5.4 (2014-XX)" modifier="Cédrik" created="201303111016" modified="201312071844" tags="ChangeLog">
-<pre>!Requirements change
+<div title="Version 5.4 (2014-XX)" modifier="Cédrik" created="201303111016" modified="201410041612" tags="ChangeLog" changecount="14">
+<pre>!Java 1.5 end-of-life notice
+MessAdmin 5.4 will be the last version to support Java 1.5. Next version will require Java 6. [[Contact us|License / Contact]] should you need to prolong support for Java 1.5.
+!Requirements change
 * ''MessAdmin now requires Java 5'' and a Servlet 2.4-compliant container (e.g. Tomcat 5, ~WebLogic 9 or ~WebSphere 6)
 * the [[Quartz]]1 plugin now requires Quartz 1.6.2 (up from 1.5.2) and optionally Spring 2.0.8 (up from 1.2.9)
 * the [[Ehcache]] plugin now requires Ehcache 1.4.1 (up from 1.3.0)
@@ -2066,23 +2087,31 @@ MessAdmin 5.3 will be the last version to support Java 1.4. Next version will re
 %/
 !Additions
 * ''new plugin: [[Quartz]]2'', for managing your [[Quartz 2.x|http://www.quartz-scheduler.org/]] Jobs
-* MessAdmin wil now display the list of current HTTP requests/%
+* MessAdmin wil now display the list of currently executing HTTP requests
+* display warnings on high CPU usage and low disk space (requires Java 6)
+**	system load &gt; 1.2 * #CPU cores
+**	low filesystem disk space (tmp dirs &lt; 1 GB or &lt; 2% total FS size)
+**	this comes in addition of existing stuck threads detection
+* new debug tool: echo request HTTP headers (try {{{?action=echo}}})/%
 
 %/
 !Improvements
 * increase wall clock time measurement accuracy
 ** NTP is prone to time correction, so use {{{System.nanoTime()}}} (which is monotonic) instead of {{{System.currentTimeMillis()}}} (which granularity is not always great anyway) to measure wall clock time
 * [[Ehcache]] plugin can now enable / disable statistics and clear all caches in one operation for all caches
-* ({{{P}}}){{{GZipOutputStream}}} and {{{ZipOutputStream}}} now implement {{{java.nio.channels.WritableByteChannel}}} for easier interoperability/%
+* ({{{P}}}){{{GZipOutputStream}}} and {{{ZipOutputStream}}} now implement {{{java.nio.channels.WritableByteChannel}}} for easier interoperability
+* Multithreaded ~GZip compression: consider current system load when computing optimal # of CPU cores to use (previously used all available CPU cores)
+* Log4J display Appenders' Filters (if any)/%
 
 %/
 !Removals
 * removed the [[JMX]] plugin, as it has been integrated into the core
-* removed support for Google Chrome Frame since it has been [[deprecated|http://blog.chromium.org/2013/06/retiring-chrome-frame.html]]/%
+* removed support for Google Chrome Frame since it has been [[retired|http://blog.chromium.org/2013/06/retiring-chrome-frame.html]]/%
 
 %/
 !Bug fixes
-* some plugins could not find their localized resources under specific installations</pre>
+* some plugins could not find their localized resources under specific installations
+* (try to) fix a rare bug where the JNDI browser could not browse anything</pre>
 </div>
 <div title="web.xml-security" modifier="Cédrik" created="200604131547" modified="201106151949" tags="install">
 <pre>(Optional but highly recommended) protect the administration application.
