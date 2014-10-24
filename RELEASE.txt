@@ -3,9 +3,9 @@ Check copyright dates are current: source, documentation (search for previous ye
 
 Copy rt-*.jar in lib/
 
-set JAVA_HOME=C:\Apps\jdk6
-set ANT_HOME=C:\Apps\ant17
-set MVN2_HOME=C:\Apps\maven2
+export JAVA_HOME=C:\Apps\jdk5
+export ANT_HOME=C:\Apps\ant18
+export MVN2_HOME=C:\Apps\maven3
 ant dist
 mvn -Dmaven.test.skip=true -Duser.name=Cedrik source:jar
 
@@ -21,7 +21,7 @@ Build Maven 2 repo with */target/MessAdmin-*-sources.jar and upload to SourceFor
 ("temporary", while I make mvn package & repository:bundle-create work...)
 
 Update MessAdmin-UpdateServer with previous release #
-
+build, commit, and upload to production server
 
 
 SF hints:

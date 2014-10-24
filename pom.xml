@@ -154,7 +154,7 @@
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
-				<filtering>true</filtering>
+				<filtering>false</filtering>
 			</resource>
 		</resources>
 		<plugins>
@@ -179,7 +179,7 @@
 				<configuration>
 					<archive>
 						<compress>true</compress>
-						<index>true</index>
+						<index>false</index><!-- This is no Applet nor WebStart -->
 						<addMavenDescriptor>false</addMavenDescriptor>
 						<!--manifestFile>META-INF/MANIFEST.MF</manifestFile-->
 						<manifest>
@@ -252,11 +252,11 @@
 						<!--Export-Package>org.foo.myproject.api</Export-Package--><!-- set of packages in your local Java sources, excluding the default package '.' and any packages containing 'impl' or 'internal' -->
 						<!--Private-Package></Private-Package-->
 						<!--Bundle-Activator></Bundle-Activator-->
-						<!--Bundle-Name>${pom.name}</Bundle-Name-->
-						<!--Bundle-Description>${pom.description}</Bundle-Description-->
-						<!--Bundle-License>${pom.licenses}</Bundle-License-->
-						<!--Bundle-Vendor>${pom.organization.name}</Bundle-Vendor-->
-						<!--Bundle-DocURL>${pom.organization.url}</Bundle-DocURL-->
+						<!--Bundle-Name>${project.name}</Bundle-Name-->
+						<!--Bundle-Description>${project.description}</Bundle-Description-->
+						<!--Bundle-License>${project.licenses}</Bundle-License-->
+						<!--Bundle-Vendor>${project.organization.name}</Bundle-Vendor-->
+						<!--Bundle-DocURL>${project.organization.url}</Bundle-DocURL-->
 					</instructions>
 				</configuration>
 			</plugin>
@@ -366,55 +366,11 @@
 		<profile>
 			<id>Java6</id>
 			<activation>
-				<jdk>1.6</jdk>
+				<jdk>[1.6,)</jdk>
 			</activation>
 			<modules>
 			</modules>
 			<dependencies><!-- Those are included in Java SE 6; avoid adding them as dependencies -->
-				<dependency>
-					<groupId>javax.activation</groupId>
-					<artifactId>activation</artifactId>
-					<version>1.1.1</version>
-					<scope>provided</scope>
-				</dependency>
-				<dependency>
-					<groupId>javax.annotation</groupId>
-					<artifactId>jsr250-api</artifactId>
-					<version>1.0</version>
-					<scope>provided</scope>
-				</dependency>
-			</dependencies>
-		</profile>
-		<profile>
-			<id>Java7</id>
-			<activation>
-				<jdk>1.7</jdk>
-			</activation>
-			<modules>
-			</modules>
-			<dependencies><!-- Those are included in Java SE 7; avoid adding them as dependencies -->
-				<dependency>
-					<groupId>javax.activation</groupId>
-					<artifactId>activation</artifactId>
-					<version>1.1.1</version>
-					<scope>provided</scope>
-				</dependency>
-				<dependency>
-					<groupId>javax.annotation</groupId>
-					<artifactId>jsr250-api</artifactId>
-					<version>1.0</version>
-					<scope>provided</scope>
-				</dependency>
-			</dependencies>
-		</profile>
-		<profile>
-			<id>Java8</id>
-			<activation>
-				<jdk>1.8</jdk>
-			</activation>
-			<modules>
-			</modules>
-			<dependencies><!-- Those are included in Java SE 8; avoid adding them as dependencies -->
 				<dependency>
 					<groupId>javax.activation</groupId>
 					<artifactId>activation</artifactId>
