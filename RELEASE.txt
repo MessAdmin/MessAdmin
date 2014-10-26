@@ -1,33 +1,24 @@
 Check copyright dates are current: source, documentation (search for previous year)
+Update MessAdmin-UpdateServer with previous release #
 
+Copy rt-1.5.jar, rt-1.6.jar and rt-1.7.jar (from Java 5, 6 & 7) in lib/
 
-Copy rt-*.jar in lib/
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk7
+export ANT_HOME=/usr/share/ant18
+export MVN2_HOME=/usr/share/maven3
+mvn -Dmaven.test.skip=true -Duser.name=Cédrik clean package deploy
 
-export JAVA_HOME=C:\Apps\jdk5
-export ANT_HOME=C:\Apps\ant18
-export MVN2_HOME=C:\Apps\maven3
-ant dist
-mvn -Dmaven.test.skip=true -Duser.name=Cedrik source:jar
-
-delete WARNING.txt from binary distribution (if release version)
-
+Add WARNING.txt to binary distribution (if non-release version)
+Upload dist/MessAdmin-*.zip to SourceForge
 
 index.html: uncomment tiddlers MarkupPostBody (Google Analytics) & AdSense
-
-Upload dist/MessAdmin-*.zip to SourceForge
 Upload modified index.html to SourceForge
 
-Build Maven 2 repo with */target/MessAdmin-*-sources.jar and upload to SourceForge
-("temporary", while I make mvn package & repository:bundle-create work...)
-
-Update MessAdmin-UpdateServer with previous release #
-build, commit, and upload to production server
+Upload MessAdmin-UpdateServer to production server
 
 
 SF hints:
-
-sftp cedrik_lime,messadmin@frs.sourceforge.net:/home/pfs/project/m/me/messadmin/
-
+sftp cedrik_lime,messadmin@frs.sourceforge.net:/home/frs/project/messadmin/
 ssh -t cedrik_lime,messadmin@shell.sourceforge.net create
+sftp cedrik_lime,messadmin@web.sourceforge.net:/home/project-web/messadmin/htdocs/
 
-sftp cedrik_lime,messadmin@web.sourceforge.net:/home/groups/m/me/messadmin/htdocs/
