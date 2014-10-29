@@ -609,7 +609,7 @@ All plugins of this type are run.
 * {{{MessAdmin-Ehcache.jar}}} ({{{clime.messadmin.providers.ehcache.EhCacheStatistics}}})
 **	See [[Ehcache]]</pre>
 </div>
-<div title="ApplicationLifeCycleProvider" modifier="Cédrik" created="200607021248" modified="201005151129" tags="[[plugin type]]">
+<div title="ApplicationLifeCycleProvider" modifier="Cédrik" created="200607021248" modified="201005151129" tags="[[plugin type]]" changecount="2">
 <pre>!Description
 This plugin is a hook for the lifecycle of the application.
 All plugins of this type are run.
@@ -625,13 +625,13 @@ Note: the invocation order of Providers is reversed in case of application destr
 ***	[[commons-IO|http://commons.apache.org/io/]] 1.3+: {{{org.apache.commons.io.FileCleaner.exitWhenFinished();}}} (only if commons-IO is in {{{/WEB-INF/lib/}}})
 ***	[[commons-logging|http://commons.apache.org/logging/]] 1.0.4-: {{{org.apache.commons.logging.LogFactory.release(Thread.currentThread().getContextClassLoader());}}}
 ***	[[Log4J|http://logging.apache.org/log4j/]] 1.x: {{{org.apache.log4j.LogManager.shutdown();}}}
-***	[[LogBack|http://logback.qos.ch/]] 1.x: {{{ch.qos.logback.classic.selector.servlet.ContextDetachingSCL().contextDestroyed(ServletContextEvent sce);}}}/%
+***	[[LogBack|http://logback.qos.ch/]] 1.x: {{{ch.qos.logback.classic.selector.servlet.ContextDetachingSCL().contextDestroyed(ServletContextEvent sce);}}}
+* {{{clime.messadmin.providers.jmx.JMXProvider}}}
+**	Priority: n/d
+**	This plugin exposes MessAdmin data via [[JMX|Install-JMX]]./%
 
 %/
 !Extra plugins (not included in {{{MessAdmin-Core.jar}}})
-* {{{MessAdmin-JMX.jar}}} ({{{clime.messadmin.providers.jmx.JMXProvider}}})
-**	Priority: n/d
-**	This plugin exposes MessAdmin data via [[JMX|Install-JMX]].
 * {{{MessAdmin-SessionKiller.jar}}} ({{{clime.messadmin.providers.lifecycle.TomcatSessionKiller}}})
 **	Priority: n/d
 **	Corrects a Tomcat bug whereby some expired [[HttpSession|http://docs.oracle.com/javaee/6/api/javax/servlet/http/HttpSession.html]] are never invalidated, by periodically (every 20 minutes) iterating over all [[HttpSessions|http://docs.oracle.com/javaee/6/api/javax/servlet/http/HttpSession.html]] and manually invalidating expired ones.</pre>
@@ -977,7 +977,7 @@ and finally a Servlet 3.1 {{{web.xml}}} like this:
 	version=&quot;3.1&quot; [metadata-complete=&quot;true&quot;]&gt;
 }}}</pre>
 </div>
-<div title="Features" modifier="YourName" created="200603052102" modified="201102041136">
+<div title="Features" modifier="Cédrik" created="200603052102" modified="201102041136">
 <pre>MessAdmin brings you a lot of [[benefits|Benefits]] by providing you the followings features.
 
 See and interact with MessAdmin via
@@ -1143,10 +1143,8 @@ While those workarounds work in a controlled environment, they can't be used in 
 <pre>MessAdmin is part of your tool arsenal to build greater quality applications; see [[developer|Developer]].
 But MessAdmin doesn't stop there. Once built, applications must run reliably. MessAdmin can help you monitor your applications and solve problems before they become a nuisance to your business. See [[system administrator|SystemAdministrator]].</pre>
 </div>
-<div title="Install-JMX" modifier="Cédrik" created="200604131544" modified="200703241132" tags="install">
-<pre>Copy {{{MessAdmin-JMX.jar}}} in your {{{WEB-INF/lib/}}} directory, or next to {{{MessAdmin-Core.jar}}}.
-
-To enable JMX monitoring, you need to both use Java &gt;= 5, and enable management within your application server.
+<div title="Install-JMX" modifier="Cédrik" created="200604131544" modified="201410292044" tags="install" changecount="1">
+<pre>To enable JMX monitoring, you need to both use Java &gt;= 5, and enable management within your application server.
 For Tomcat (version 5.x and more), you can use (//warning: highly insecure setup!//):
 {{{
 CATALINA_OPTS=-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=9004 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false
@@ -1600,17 +1598,18 @@ None. [[Write your own|CreatePlugins]]!
 <div title="SessionKiller" modifier="Cédrik" created="200608311932" modified="200608311934" tags="[[external plugin]]">
 <pre>This MessAdmin plugin corrects a Tomcat bug whereby some expired ~HttpSession are never invalidated, by periodically (every 20 minutes) iterating over all ~HttpSessions and automatically invalidating expired ones.</pre>
 </div>
-<div title="SessionLifeCycleProvider" modifier="Cédrik" created="200607021249" modified="200607021257" tags="[[plugin type]]">
+<div title="SessionLifeCycleProvider" modifier="Cédrik" created="200607021249" modified="200607021257" tags="[[plugin type]]" changecount="2">
 <pre>!Description
 This plugin is a hook for the lifecycle of the session.
 All plugins of this type are run.
 Note: the invocation order of Providers is reversed in case of session destruction.
 !Included plugins
-None. [[Write your own|CreatePlugins]]!
-!Extra plugins (not included in {{{MessAdmin-Core.jar}}})
 * {{{MessAdmin-JMX.jar}}} ({{{clime.messadmin.providers.jmx.JMXProvider}}})
 **	Priority: n/d
-**	This plugin exposes MessAdmin data via [[JMX|Install-JMX]].</pre>
+**	This plugin exposes MessAdmin data via [[JMX|Install-JMX]].
+!Extra plugins (not included in {{{MessAdmin-Core.jar}}})
+None. [[Write your own|CreatePlugins]]!
+</pre>
 </div>
 <div title="SideBarOptions" modifier="Cédrik" created="200709191836" modified="200709191836" tags="excludeLists excludeSearch">
 <pre>&lt;&lt;search&gt;&gt;&lt;&lt;closeAll&gt;&gt;&lt;&lt;permaview&gt;&gt;&lt;&lt;newTiddler&gt;&gt;/%&lt;&lt;newJournal 'DD MMM YYYY'&gt;&gt;%/&lt;&lt;saveChanges&gt;&gt;&lt;&lt;slider chkSliderOptionsPanel OptionsPanel 'options »' 'Change TiddlyWiki advanced options'&gt;&gt;</pre>
@@ -1984,7 +1983,7 @@ MessAdmin 4.3 will be the last version to support the Servlet 2.3 specification 
 * corrected a rare NPE preventing startup when a web application had no resource named &quot;{{{/}}}&quot;
 * corrected an issue in the administration webapp when the the (file system) path of the monitored web application contained non-ascii characters, on some application servers only</pre>
 </div>
-<div title="Version 5.0 (2010-12) &quot;Plug'n'Play&quot;" modifier="YourName" created="201004111248" modified="201011132117" tags="ChangeLog">
+<div title="Version 5.0 (2010-12) &quot;Plug'n'Play&quot;" modifier="Cédrik" created="201004111248" modified="201011132117" tags="ChangeLog">
 <pre>!Requirements change
 MessAdmin now requires Java 1.4 and a Servlet 2.4-compliant container (e.g. Tomcat 5, ~WebLogic 9 or ~WebSphere 6). While we don't officially support Servlet 2.3-compliant containers, ~MessAdmin-Core is still compatible with this specification version; see the [[advanced installation instructions|Advanced installation]] for installation details.
 !Additions
