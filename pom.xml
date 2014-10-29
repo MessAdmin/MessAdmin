@@ -391,10 +391,10 @@
 	<ciManagement></ciManagement>
 	<mailingLists></mailingLists>
 	<scm>
-		<connection>scm:git:https://github.com/javabean/MessAdmin.git</connection>
-		<developerConnection>scm:git:git@github.com:javabean/MessAdmin.git</developerConnection>
+		<connection>scm:git:https://github.com/MessAdmin/MessAdmin.git</connection>
+		<developerConnection>scm:git:git@github.com:MessAdmin/MessAdmin.git</developerConnection>
 		<tag>HEAD</tag>
-		<url>https://svn.sourceforge.net/svnroot/messadmin</url>
+		<url>https://github.com/MessAdmin</url>
 	</scm>
 
 	<!-- Maven Environment -->
