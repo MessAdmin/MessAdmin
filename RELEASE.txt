@@ -1,12 +1,13 @@
 Check copyright dates are current: source, documentation (search for previous year)
 Update MessAdmin-UpdateServer with previous release #
+Set release date in documentation (change log)
 
 Copy rt-1.5.jar, rt-1.6.jar and rt-1.7.jar (from Java 5, 6 & 7) in lib/
 
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk7
-export ANT_HOME=/usr/share/ant18
 export MVN2_HOME=/usr/share/maven3
-mvn -Dmaven.test.skip=true -Duser.name=Cédrik clean package deploy
+mvn -Dmaven.test.skip=true -Duser.name=Cédrik -DskipAssembly=true clean package
+mvn -Dmaven.test.skip=true -Duser.name=Cédrik deploy
 
 Add WARNING.txt to binary distribution (if non-release version)
 Upload dist/MessAdmin-*.zip to SourceForge
@@ -15,6 +16,10 @@ index.html: uncomment tiddlers MarkupPostBody (Google Analytics) & AdSense
 Upload modified index.html to SourceForge
 
 Upload MessAdmin-UpdateServer to production server
+
+Tag release (git tag -s vX.Y.Z -m 'X.Y.Z') and push tags (git push --tags)
+
+Create release on GitHub? (Not yet, let's concentrate binary distribution on SourceForge for now)
 
 
 SF hints:
