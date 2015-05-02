@@ -25,7 +25,7 @@
 	<!-- Coordinates -->
 	<groupId>net.sourceforge.messadmin</groupId>
 	<artifactId>MessAdmin</artifactId>
-	<version>5.4</version>
+	<version>5.5-SNAPSHOT</version>
 
 	<!-- Inheritance -->
 	<!--parent>
@@ -141,8 +141,8 @@
 	<packaging>pom</packaging>
 	<properties>
 		<project.build.sourceEncoding>ISO-8859-15</project.build.sourceEncoding>
-		<maven.compiler.source>1.5</maven.compiler.source>
-		<maven.compiler.target>1.5</maven.compiler.target>
+		<maven.compiler.source>1.6</maven.compiler.source>
+		<maven.compiler.target>1.6</maven.compiler.target>
 		<!-- The following properties will be used for META-INF/MANIFEST.MF -->
 		<manifest.Implementation-URL>http://messadmin.sourceforge.net</manifest.Implementation-URL><!--${project.url}-->
 	</properties>

@@ -1086,7 +1086,7 @@ config.options.chkAnimate = true;
 config.options.txtUserName = &quot;Cédrik&quot;;
 config.options.chkSaveBackups = false;</pre>
 </div>
-<div title="HttpSession size" modifier="Cédrik" created="200706271800" modified="200710071704">
+<div title="HttpSession size" modifier="Cédrik" created="200706271800" modified="200710071704" changecount="3">
 <pre>Computing a {{{HttpSession}}} memory size is a challenging task at best.
 
 Measuring the size of a Java Object is tricky enough: you can't measure an object's size by serializing it into a byte stream and looking at the resulting stream length (the reason this does not work is because the serialization layout is only a remote reflection of the true in-memory layout; consider for example a String, which is 2 bytes/char in memory, but little more than 1 byte/char once serialized in the usual cases). Moreover, pointer size (32/64 bit) and alignment variations make object size highly dependent on VM implementation.
@@ -1117,7 +1117,7 @@ public abstract class ActionForm implements Serializable {
 ...
 }
 }}}
-Ah, we are onto something here! Each {{{ActionForm}}} has a pointer to its servlet and request handler, which in turn have pointers to other important structures! From them come the huge size of your Struts' {{{ActionForm}}}s. But does those big objects have an impact on your server's memory? Not really, as it turns: an {{{ActionServlet}}} is a singleton: there is only 1 instance ever in the JVM. Which means that 2 (or more) {{{ActionForm}}}s will ''share'' a single instance of their {{{ActionServlet}}}.
+Ah, we are onto something here! Each {{{ActionForm}}} has a pointer to its servlet and request handler, which in turn have pointers to other important structures! From them come the huge size of your Struts' {{{ActionForm}}}s. But do those big objects have an impact on your server's memory? Not really, as it turns: an {{{ActionServlet}}} is a singleton: there is only 1 instance ever in the JVM. Which means that 2 (or more) {{{ActionForm}}}s will ''share'' a single instance of their {{{ActionServlet}}}.
 
 So... The true memory footprint of your {{{HttpSession}}} should really be: {{{sizeOf(myActionForm) - sizeOf(the ActionServlet contained inside myActionForm)}}} ({{{multipartRequestHandler}}} and others omitted).
 How can we &quot;guess&quot; how to do that? Well, it's not that easy. One could be tempted to say
@@ -1137,7 +1137,7 @@ So here we are, back to square one. It is an unfortunate fact that computing the
 There are two workarounds:
 * create 10 or so identical sessions, look at the total {{{HttpSession}}}s size (in the Application Statistics pane of MessAdmin) and divide this by the number of sessions.
 * create a few {{{HttpSession}}}s and record their total size. Next, create your target {{{HttpSession}}} and record the new total size. Your last created {{{HttpSession}}} size //should// be the difference between those two sums.
-While those workarounds work in a controlled environment, they can't be used in production.</pre>
+While those workarounds work in a controlled environment, they can't be used in production since you need either homogeneous sessions or session lifecycle control while looking at their total size.</pre>
 </div>
 <div title="ITManager" modifier="Cédrik" created="200604091922" modified="200607161550" tags="benefits">
 <pre>MessAdmin is part of your tool arsenal to build greater quality applications; see [[developer|Developer]].
@@ -2111,6 +2111,26 @@ MessAdmin 5.4 will be the last version to support Java 1.5. Next version will re
 !Bug fixes
 * some plugins could not find their localized resources under specific installations
 * (try to) fix a rare bug where the JNDI browser could not browse anything</pre>
+</div>
+<div title="Version 5.5 (2015-XX)" modifier="Cédrik" created="201411022139" tags="ChangeLog" changecount="3">
+<pre>!Requirements change
+* ''MessAdmin now requires Java 6'' and a Servlet 2.4-compliant container (e.g. Tomcat 5, ~WebLogic 9 or ~WebSphere 6)/%
+
+%/
+!Additions
+* /%
+
+%/
+!Improvements
+* /%
+
+%/
+!Removals
+* /%
+
+%/
+!Bug fixes
+* </pre>
 </div>
 <div title="web.xml-security" modifier="Cédrik" created="200604131547" modified="201106151949" tags="install">
 <pre>(Optional but highly recommended) protect the administration application.
