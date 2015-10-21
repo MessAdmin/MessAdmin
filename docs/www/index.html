@@ -869,7 +869,7 @@ Directories are [[ZIP|http://www.pkware.com/support/zip-app-note/]] compressed. 
 <pre>This MessAdmin plugin displays [[Ehcache|http://www.ehcache.org]] statistics, and also enables you to clear your caches.
 Requires Ehcache &gt;= 1.4.1.</pre>
 </div>
-<div title="FAQ" modifier="Cédrik" created="200603052107" modified="201410041831" changecount="10">
+<div title="FAQ" modifier="Cédrik" created="200603052107" modified="201505122018" changecount="11">
 <pre>[[Disclaimer]]/%
 %/
 * How stable is this product? How much memory/CPU does it use?
@@ -930,6 +930,7 @@ Other projects can monitor your web applications, even if more intrusive or less
 * [[Metrics|https://github.com/dropwizard/metrics]]
 * [[jvmtop|https://code.google.com/p/jvmtop/]]
 * [[XRebel|http://zeroturnaround.com/software/xrebel/]]
+* [[Stagemonitor|http://www.stagemonitor.org]]
 &lt;&lt;&lt;
 * Any developer FAQ?
 &lt;&lt;&lt;
@@ -1398,7 +1399,7 @@ try {
 &lt;meta name=&quot;copyright&quot; content=&quot;copyright 2005-2015 Cedrik LIME&quot;&gt;
 &lt;meta name=&quot;robots&quot; content=&quot;index,follow,archive&quot;&gt;</pre>
 </div>
-<div title="Maven" modifier="Cédrik" created="201002271219" modified="201008161627">
+<div title="Maven" modifier="Cédrik" created="201002271219" modified="201510021246" changecount="3">
 <pre>To manage jar dependencies with [[Maven|http://maven.apache.org/]], add the following in your {{{pom.xml}}}:
 {{{
 &lt;dependencies&gt;
@@ -1406,7 +1407,13 @@ try {
 	&lt;dependency&gt;
 		&lt;groupId&gt;net.sourceforge.messadmin&lt;/groupId&gt;
 		&lt;artifactId&gt;MessAdmin-Core&lt;/artifactId&gt;
-		&lt;version&gt;5.4&lt;/version&gt;
+		&lt;version&gt;5.5&lt;/version&gt;
+		&lt;scope&gt;runtime&lt;/scope&gt;
+	&lt;/dependency&gt;
+	&lt;dependency&gt;
+		&lt;groupId&gt;net.sourceforge.messadmin&lt;/groupId&gt;
+		&lt;artifactId&gt;MessAdmin-AutoProbe&lt;/artifactId&gt;
+		&lt;version&gt;5.5&lt;/version&gt;
 		&lt;scope&gt;runtime&lt;/scope&gt;
 	&lt;/dependency&gt;
 &lt;!-- add here other MessAdmin plugins as required --&gt;
@@ -1421,7 +1428,7 @@ try {
 &lt;/repositories&gt;
 }}}
 
-You will still have to copy the administration webapp ~JSPs (or war) by hand, as I haven't created a [[war overlay|http://maven.apache.org/plugins/maven-war-plugin/overlays.html]] yet.
+If using an old (&lt; Servlet 3.0) container, you will still have to copy the administration webapp ~JSPs (or war) by hand, as I haven't created a [[war overlay|http://maven.apache.org/plugins/maven-war-plugin/overlays.html]] yet.
 
 Note that since version 4.2, I have stopped [[uploading|http://maven.apache.org/guides/mini/guide-central-repository-upload.html]] MessAdmin to the [[Maven central repository|http://repo1.maven.org/maven2/]] since it is getting more and more [[painful|http://nexus.sonatype.org/oss-repository-hosting.html]] to do so. While I really dislike having to declare a repository location per dependency, this is really the only way to go&amp;hellip;</pre>
 </div>
@@ -1509,14 +1516,14 @@ Note: the invocation order of Providers is reversed in case of request destructi
 * {{{MessAdmin-ClickStream.jar}}} ({{{clime.messadmin.providers.lifecycle.ClickStreamGatherer}}})
 **	See ClickStream</pre>
 </div>
-<div title="Requirements" modifier="Cédrik" created="200603052038" modified="201410012103" changecount="1">
-<pre>MessAdmin needs at least [[Java 5|http://java.sun.com/j2se/1.5.0/]], and a Java Servlet container (Servlet 2.4/~J2EE 1.4; e.g. [[Tomcat 5|http://tomcat.apache.org]], ~WebLogic 9 or ~WebSphere 6).
+<div title="Requirements" modifier="Cédrik" created="200603052038" modified="201505122020" changecount="2">
+<pre>MessAdmin needs at least [[Java 6|http://java.oracle.com/]], and a Java Servlet container (Servlet 2.4/~J2EE 1.4; e.g. [[Tomcat 5|http://tomcat.apache.org]], ~WebLogic 9 or ~WebSphere 6).
 Some [[plugins|Plugins]] may have different requirements.
 
 While you can continue running ~MessAdmin-Core on a Servlet 2.3 container, this is not a supported configuration (see the [[advanced installation instructions|Advanced installation]] for details)./%
 Should you need a version of MessAdmin compatible with a Servlet 2.3 container, please use version [[4.3|Version 4.3 (2010-04)]] or [[get in touch with us|License / Contact]].%/
 
-This is also the last version to support Java 1.5. Next version will require Java 6.</pre>
+This is also the last version to support Java 6. Next version will require Java 7.</pre>
 </div>
 <div title="ScreenShots" modifier="Cédrik" created="200603052116" modified="200604092019">
 <pre>Note: this section is rather outdated. We are working on taking new screenshots to expose new features. In the meantime, feel free to explore our LiveDemo!
@@ -2112,13 +2119,14 @@ MessAdmin 5.4 will be the last version to support Java 1.5. Next version will re
 * some plugins could not find their localized resources under specific installations
 * (try to) fix a rare bug where the JNDI browser could not browse anything</pre>
 </div>
-<div title="Version 5.5 (2015-XX)" modifier="Cédrik" created="201411022139" tags="ChangeLog" changecount="3">
+<div title="Version 5.5 (2015-XX)" modifier="Cédrik" created="201411022139" modified="201510212034" tags="ChangeLog" changecount="15">
 <pre>!Requirements change
-* ''MessAdmin now requires Java 6'' and a Servlet 2.4-compliant container (e.g. Tomcat 5, ~WebLogic 9 or ~WebSphere 6)/%
+* ''MessAdmin now requires Java 6'' and a Servlet 2.4-compliant container (e.g. Tomcat 5, ~WebLogic 9 or ~WebSphere 6)
+* MessAdmin 5.5 will be the last version to support Java 6. Next version will require Java 7. [[Contact us|License / Contact]] should you need to prolong support for Java 6./%
 
 %/
 !Additions
-* /%
+* MessAdmin will now pick up the logged-in user name from [[Shiro|http://shiro.apache.org]], if available/%
 
 %/
 !Improvements
@@ -2130,7 +2138,9 @@ MessAdmin 5.4 will be the last version to support Java 1.5. Next version will re
 
 %/
 !Bug fixes
-* </pre>
+* Correctly handle a edge case where a ~HttpSession was destroyed and immediately re-created a-new within a single ~HttpRequest
+* Quartz plugin correctly handle disappearing triggers while iterating over them
+* Close (disconnect) {{{HttpURLConnection}}}s when possible</pre>
 </div>
 <div title="web.xml-security" modifier="Cédrik" created="200604131547" modified="201106151949" tags="install">
 <pre>(Optional but highly recommended) protect the administration application.
